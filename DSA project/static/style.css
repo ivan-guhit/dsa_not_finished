@@ -1,0 +1,426 @@
+:root {
+	--black: #000000;
+	--gray: #3f3f3f;
+	--orange: #ffac1c;
+  	--chili: #c0392b;
+  	--ink: #17263c;
+  	--muted: #55657a;
+  	--paper: #eef3f0;
+  	--card: #ffffff;
+  	--line: #d3ddd8;
+  	font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  	color: var(--ink);
+}
+
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0; 
+	background: var(--paper);
+	line-height: 1.45;
+}
+
+h1, h2{
+	margin: 0;
+	letter-spacing: -0.01em;
+}
+
+h1{
+	font-size: 1.7rem;
+	font-weight: 800;
+}
+
+h2{
+	font-size: 1.05rem;
+	font-weight: 700;
+	margin-bottom: .35rem;
+}
+
+
+.top{
+	background: var(--black);
+	color: #fff;
+	padding: 1.2rem clamp(1rem, 4vw, 2.5rem);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+	border-bottom: 3px solid var(--orange);
+}
+
+.top p{
+	margin: .2rem 0 0;
+	opacity: .85;
+}
+
+.layout{
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+	gap: 1.5rem;
+	padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+@media (max-width: 960px) {
+	.layout {
+		grid-template-columns: 1fr;
+	}
+}
+
+.side section{
+	background: var(--card);
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+
+
+.info{
+	color: var(--muted);
+	font-size: .85rem; min-height: 1.3em;
+	margin: .4rem 0;
+}
+
+.toolbar{
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+}
+
+.toolbar input{
+	flex: 1 1 220px;
+}
+
+input, select{
+	font: inherit;
+	padding: .5rem .6rem;
+	border: 1px solid #aebcb5;
+	border-radius: 4px;
+	background: #fff; color: var(--ink); 
+}
+
+input:focus-visible, select:focus-visible, button:focus-visible{
+	outline: 3px solid var(--orange);
+	outline-offset: 1px;
+}
+
+.btn{
+	font: inherit; 
+	font-weight: 600;
+	padding: .5rem .9rem;
+	border-radius: 4px;
+	border: 1px solid var(--black);
+	background: #fff;
+	color: var(--black);
+	cursor: pointer;
+}
+
+.btn:hover{
+	background: #e3efe9;
+}
+
+.btn.primary{
+	background: var(--orange);
+	border-color: var(--orange);
+	color: var(--ink);
+}
+
+.btn.primary:hover{
+	background: #ffd83a;
+}
+
+.btn.danger{
+	color: var(--chili);
+	border-color: var(--chili);
+}
+
+.btn.small {
+	padding: .25rem .55rem;
+	font-size: .85rem;
+}
+
+.tablewrap{
+	overflow-x: auto;
+	background: var(--card);
+	border: 1px solid var(--line);
+	border-radius: 6px;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+	min-width: 720px;
+}
+
+th, td{
+	padding: .6rem .7rem;
+	text-align: left;
+	border-bottom: 1px solid var(--line);
+	vertical-align: middle;
+}
+
+
+th{
+	font-size: .85rem;
+	color: var(--muted);
+	font-weight: 600;
+	background: #f7faf8;
+}
+
+.num{
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+
+td.actions-cell{
+	white-space: nowrap;
+	display: flex;
+	gap: .3rem;
+}
+
+.empty{
+	text-align: center;
+	color: var(--muted);
+	padding: 2rem;
+}
+
+.badge{
+	display: inline-block;
+	padding: .1rem .5rem;
+	border-radius: 99px;
+	font-size: .8rem;
+	font-weight: 600;
+}
+
+.badge.expired{
+	background: var(--chili);
+	color: #fff;
+}
+
+.badge.soon{
+	background: var(--orange);
+	color: var(--ink);
+}
+
+.badge.ok{
+	background: #e3efe9;
+	color: var(--gray);
+}
+
+.badge.none{
+	color: var(--muted);
+}
+
+.low{
+	color: var(--chili);
+	font-weight: 700;
+}
+
+
+.tags{
+	display: grid;
+	gap: .6rem;
+}
+
+.tag{
+	position: relative;
+	background: #fff8d6;
+	border: 2px solid var(--ink);
+	border-radius: 4px  4px;
+	padding: .55rem .8rem .55rem 2.2rem;
+}
+
+
+
+.tag.expired{
+	background: #fbe1dd;
+}
+
+.tag strong{
+	display: block;
+}
+
+.tag .when{
+	font-weight: 800;
+	font-size: 1.05rem;
+}
+
+.tag .sub{
+	color: var(--muted);
+	font-size: .82rem;
+    padding-left: .7rem;
+}
+
+.rangeform{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: .5rem;
+	align-items: end;
+}
+
+.rangeform label{
+	display: grid;
+	gap: .2rem;
+	font-size: .85rem;
+}
+
+.rangeform .btn{
+	grid-column: 1 / -1;
+}
+
+ul.plain {
+	list-style: none;
+	padding: 0;
+	margin: .7rem 0 0;
+}
+
+ul.plain li{
+	display: flex;
+	justify-content: space-between;
+	gap: .5rem;
+	padding: .35rem 0;
+	border-bottom: 1px solid var(--line);
+}
+
+.structs{
+	font-size: .88rem;
+}
+
+.structs h3{
+	font-size: .9rem;
+	margin: .8rem 0 .25rem;
+}
+
+.structs h3:first-child{
+	margin-top: 0;
+}
+
+.structs p{
+	margin: .1rem 0;
+	color: var(--muted);
+}
+
+.buckets{
+	display: flex;
+	align-items: flex-end;
+	gap: 2px;
+	height: 44px;
+	margin: .4rem 0;
+}
+
+.buckets span{
+	flex: 1;
+	background: var(--black);
+	min-height: 2px;
+	border-radius: 1px;
+}
+
+.chips{
+	display: flex;
+	flex-wrap: wrap;
+	gap: .3rem;
+}
+
+.chips span{
+	background: #e3efe9;
+	border-radius: 4px;
+	padding: .1rem .4rem;
+	font-size: .8rem;
+}
+
+.sales{
+	margin-top: 1.5rem;
+	background: var(--card);
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	padding: 1rem;
+}
+
+.sales h3{
+	font-size: .95rem;
+	margin: 0;
+}
+
+.salesgrid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem;
+	margin-top: .6rem;
+}
+
+@media (max-width: 720px){
+	.salesgrid{
+		grid-template-columns: 1fr;
+	}
+}
+
+.salehead{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: .5rem;
+	margin-bottom: .3rem;
+}
+
+
+.sale small{
+	display: block;
+	color: var(--muted);
+}
+
+.report-total{
+	font-size: 1.5rem;
+	font-weight: 800;
+	margin: 0;
+}
+
+#report h4{
+	font-size: .85rem;
+	margin: .9rem 0 .2rem;
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.error{
+	color: var(--chili);
+	font-weight: 600;
+	min-height: 1.3em;
+	margin: .3rem 0;
+}
+
+dialog{
+	border: 0;
+	border-radius: 8px;
+	padding: 1.3rem;
+	width: min(440px, 92vw);
+	box-shadow: 0 12px 40px rgba(23, 38, 60, .35);
+}
+
+dialog::backdrop{
+	background: rgba(23, 38, 60, .55);
+}
+
+dialog label{
+	display: grid; gap: .25rem;
+	font-size: .9rem;
+	margin-top: .7rem;
+}
+
+dialog .two{
+	display: grid; 
+	grid-template-columns: 1fr 1fr;
+	gap: .6rem;
+}
+
+.actions{
+	display: flex;
+	justify-content: flex-end;
+	gap: .5rem;
+	margin-top: .9rem;
+}

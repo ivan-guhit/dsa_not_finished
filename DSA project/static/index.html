@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Small Store Inventory</title>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<header class="top">
+		<div>
+			<h1>Small Store Inventory</h1>
+			<p>Stock, prices and expiry dates for a small store.</p>
+		</div>
+		<button class="btn primary" id="addBtn">Add product</button>
+	</header>
+
+	<main class="layout">
+
+  		<section class="stock" aria-labelledby="stockTitle">
+    			<h2 id="stockTitle">Products</h2>
+    			<div class="toolbar">
+      				<input id="q" type="search" placeholder="Search by name, category or SKU" aria-label="Search products">
+      				<select id="mode" aria-label="Search method">
+        				<option value="linear">Search by letters</option>
+        				<option value="binary">Search by contains with</option>
+      				</select>
+
+      				<select id="sortBy" aria-label="Sort by">
+        				<option value="name">Sort by name</option>
+        				<option value="price">Sort by price</option>
+        				<option value="quantity">Sort by stock</option>
+        				<option value="expiry">Sort by expiry</option>
+      				</select>
+
+      				<select id="order" aria-label="Order">
+        				<option value="asc">Ascending</option>
+        				<option value="desc">Descending</option>
+      				</select>
+
+     			 	<select id="algo" aria-label="Sorting algorithm">
+        				<option value="merge">Merge sort</option>
+        				<option value="quick">Quick sort</option>
+     			 	</select>
+    			</div>
+
+    			<p class="info" id="info" role="status"></p>
+    			<div class="tablewrap">
+      				<table>
+        				<thead>
+						<tr>
+							<th>SKU</th>
+							<th>Product</th>
+							<th>Category</th>
+							<th class="num">Price</th>
+							<th class="num">Stock</th>
+							<th>Expiry</th><th>Actions</th>
+						</tr>
+					</thead>
+        				<tbody id="rows"></tbody>
+      				</table>
+    			</div>
+
+    			<section class="sales" aria-labelledby="salesTitle">
+     			 	<h2 id="salesTitle">Sales log</h2>
+      					<div class="salesgrid">
+        					<div>
+         					 	<div class="salehead">
+            							<h3>Recent sales</h3>
+            							<button class="btn small" id="undoBtn">Undo last sale</button>
+         				 		</div>
+          						<p class="hint">There are no sales to undo</p>
+          						<p class="info" id="undoMsg" role="status"></p>
+          						<ul id="saleList" class="plain"></ul>
+        					</div>
+
+        					<div>
+         				 		<h3>Report</h3>
+          						<div id="report"></div>
+        					</div>
+      					</div>
+    			</section>
+  	</section>
+
+	<aside class="side">
+		<section aria-labelledby="expTitle">
+			<h2 id="expTitle">Expiring first</h2>
+			<p class="hint">Picked from a min-heap, so the soonest dates always come out on top.</p>
+			<div id="tags" class="tags"></div>
+		</section>
+
+		<section aria-labelledby="rangeTitle">
+			<h2 id="rangeTitle">Find by price</h2>
+			<p class="hint">Uses a binary search tree to list products within a price range.</p>
+			<div class="rangeform">
+				<label>From (₱) <input id="minP" type="number" min="0" step="0.01" value="10"></label>
+				<label>To (₱) <input id="maxP" type="number" min="0" step="0.01" value="25"></label>
+				<button class="btn" id="rangeBtn">Show products</button>
+			</div>
+			<p class="error" id="rangeErr" role="alert"></p>
+			<ul id="rangeOut" class="plain"></ul>
+		</section>
+
+		<section aria-labelledby="structTitle">
+			<h2 id="structTitle">Inside the structures</h2>
+			<div id="structs" class="structs"></div>
+		</section>
+  	</aside>
+</main>
+
+<dialog id="formDlg">
+	<form id="form" method="dialog" novalidate>
+		<h2 id="formTitle">Add product</h2>
+		<label>SKU <input id="f_sku" maxlength="20" placeholder="e.g. SNK-003" required></label>
+    		<label>Product name <input id="f_name" maxlength="60" required></label>
+   	 	<label>Category <input id="f_category" maxlength="30" required></label>
+
+		<div class="two">
+			<label>Price (₱) <input id="f_price" type="number" min="0.01" step="0.01" required></label>
+      			<label>Stock <input id="f_quantity" type="number" min="0" step="1" required></label>
+    		</div>
+
+		<label>Expiry date (leave empty if none) <input id="f_expiry" type="date"></label>
+		<p class="error" id="formErr" role="alert"></p>
+		<div class="actions">
+			<button type="button" class="btn" id="formCancel">Cancel</button>
+			<button type="submit" class="btn primary" id="formSave">Save product</button>
+		</div>
+  	</form>
+</dialog>
+
+<dialog id="sellDlg">
+	<form id="sellForm" method="dialog" novalidate>
+		<h2 id="sellTitle">Sell</h2>
+    		<label>Quantity sold <input id="s_qty" type="number" min="1" step="1" value="1" required></label>
+    		<p class="error" id="sellErr" role="alert"></p>
+   		 <div class="actions">
+      			<button type="button" class="btn" id="sellCancel">Cancel</button>
+      			<button type="submit" class="btn primary">Record sale</button>
+    		</div>
+  	</form>
+</dialog>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
