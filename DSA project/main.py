@@ -22,7 +22,7 @@ async def lifespan(app):
     yield
 
 
-app = FastAPI(title="Sari-Sari Store Inventory", lifespan=lifespan)
+app = FastAPI(title="Small Store Inventory", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory=os.path.join(BASE, "static")), name="static")
 
 
